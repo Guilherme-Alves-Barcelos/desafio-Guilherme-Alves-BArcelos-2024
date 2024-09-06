@@ -19,12 +19,11 @@ class RecintosZoo {
     }
 
     analisaRecintos(animal, quantidade) {
-        // Validação de animal
+
         if (!this.animaisValidos[animal]) {
             return { erro: "Animal inválido", recintosViaveis: null };
         }
 
-        // Validação de quantidade
         if (quantidade <= 0) {
             return { erro: "Quantidade inválida", recintosViaveis: null };
         }
@@ -40,7 +39,6 @@ class RecintosZoo {
             const biomaCompativel = bioma.includes(recinto.bioma) || (animal === "HIPOPOTAMO" && recinto.bioma === "savana e rio");
             const compartilhaCarnivoro = carnivoro && recinto.animais.length > 0 && recinto.animais.some(a => a.carnivoro);
 
-            // Regras de compatibilidade
             if (biomaCompativel && !compartilhaCarnivoro && espacoLivre >= tamanho * quantidade) {
                 recintosViaveis.push(`Recinto ${recinto.numero} (espaço livre: ${espacoLivre - tamanho * quantidade} total: ${recinto.tamanho})`);
             }
